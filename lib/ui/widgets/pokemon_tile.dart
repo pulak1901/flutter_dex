@@ -55,18 +55,24 @@ class PokemonTile extends StatelessWidget {
         ),
         child: Stack(
           children: [
+            Positioned(
+              top: 12,
+              left: 104,
+              child: Text(
+                "#" + pokemon.id.toString().padLeft(3, '0'),
+                style: const TextStyle(
+                    color: Colors.black26,
+                    fontSize: 40,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.w900),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SvgPicture.asset(
-                    "assets/pokeball.svg",
-                    color: const Color.fromRGBO(255, 255, 255, 0.2),
-                    width: 60,
-                  ),
-                  Icon(Icons.arrow_forward_ios)
-                ],
+              padding: const EdgeInsets.fromLTRB(12, 40, 12, 12),
+              child: SvgPicture.asset(
+                "assets/pokeball.svg",
+                color: const Color.fromRGBO(255, 255, 255, 0.2),
+                width: 60,
               ),
             ),
             Positioned(
@@ -88,10 +94,14 @@ class PokemonTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 32, 0, 0),
                     child: Text(
                       pokemon.name,
-                      style: const TextStyle(fontSize: 24),
+                      style: const TextStyle(
+                          fontSize: 24,
+                          color: Colors.white,
+                          letterSpacing: 1.4,
+                          fontWeight: FontWeight.w800),
                     ),
                   ),
                   Column(
