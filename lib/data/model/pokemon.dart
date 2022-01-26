@@ -33,6 +33,17 @@ class Pokemon {
         _types.add(PokemonType.values[t3]);
       }
 
+      if (_types.isEmpty) {
+        t = p["pokemon_v2_pokemontypepasts"];
+        for (int j = 0; j < t.length; j++) {
+          Map<String, dynamic> t1 = t[j];
+          Map<String, dynamic> t2 = t1["pokemon_v2_type"];
+          int t3 = t2["id"];
+
+          _types.add(PokemonType.values[t3]);
+        }
+      }
+
       pokemon.add(Pokemon(id: _id, name: _name.capitalize(), types: _types));
     }
 

@@ -19,6 +19,11 @@ query basicPokemonQuery {
         id
       }
     }
+    pokemon_v2_pokemontypepasts(where: {pokemon_v2_type: {generation_id: {_eq: 1}}}) {
+      pokemon_v2_type {
+        id
+      }
+    }
   }
 }
 ''', variables: {});
