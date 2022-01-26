@@ -1,5 +1,5 @@
 enum PokemonType {
-  _,
+  placeholder1,
   normal,
   fighting,
   flying,
@@ -8,7 +8,7 @@ enum PokemonType {
   rock,
   bug,
   ghost,
-  __,
+  placeholder2,
   fire,
   water,
   grass,
