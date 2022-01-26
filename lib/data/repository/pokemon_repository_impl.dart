@@ -11,7 +11,7 @@ class PokemonRepositoryImpl implements PokemonRepository {
   Future<List<Pokemon>> getAllPokemon() async {
     final result = await client.query('''
 query basicPokemonQuery {
-  pokemon_v2_pokemon(limit: 3, order_by: {id: asc}) {
+  pokemon_v2_pokemon(limit: 151, order_by: {id: asc}) {
     id
     name
     pokemon_v2_pokemontypes(where: {pokemon_v2_type: {generation_id: {_eq: 1}}}) {
