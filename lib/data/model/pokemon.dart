@@ -26,7 +26,7 @@ class Pokemon {
       List<dynamic> t = p["pokemon_v2_pokemontypes"];
       List<PokemonType> _types = [];
       for (int j = 0; j < t.length; j++) {
-        Map<String, dynamic> t1 = t[0];
+        Map<String, dynamic> t1 = t[j];
         Map<String, dynamic> t2 = t1["pokemon_v2_type"];
         int t3 = t2["id"];
 
