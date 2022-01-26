@@ -21,4 +21,14 @@ class TypeColors {
     PokemonType.ice: const Color.fromRGBO(152, 216, 216, 1),
     PokemonType.dragon: const Color.fromRGBO(112, 56, 248, 1),
   };
+
+  static Color getLighterColorOf(PokemonType type, double amount) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(colorOf[type]!);
+    final hslLight =
+        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+    return hslLight.toColor();
+  }
 }
