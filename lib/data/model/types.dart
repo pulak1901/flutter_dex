@@ -1,0 +1,19 @@
+enum PokemonType {
+  _,
+  normal,
+  fighting,
+  flying,
+  poison,
+  ground,
+  rock,
+  bug,
+  ghost,
+  __,
+  fire,
+  water,
+  grass,
+  electric,
+  psychic,
+  ice,
+  dragon
+}
