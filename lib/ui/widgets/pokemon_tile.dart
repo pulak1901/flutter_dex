@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
 import 'package:flutter_dex/data/model/type_colors.dart';
+import 'package:flutter_dex/ui/details/extract_details_argument.dart';
 import 'package:flutter_dex/utility/string_extension.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -122,6 +123,19 @@ class PokemonTile extends StatelessWidget {
                 alignment: Alignment.bottomRight,
               ),
             ),
+            Positioned.fill(
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: TypeColors.colorOf[_type],
+                  onTap: () => {
+                    Navigator.pushNamed(
+                        context, ExtractDetailsArgumentPage.routeName,
+                        arguments: DetailsArguments(pokemon))
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),
