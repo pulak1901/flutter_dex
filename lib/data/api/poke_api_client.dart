@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/api/http_client_logger.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
 
