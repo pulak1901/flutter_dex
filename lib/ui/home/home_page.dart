@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
+import 'package:flutter_dex/ui/widgets/pokemon_tile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dex/di/pokemon_provider.dart';
 
@@ -24,12 +25,17 @@ class PokemonList extends ConsumerWidget {
     return pm.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Text("Error! $err"),
-        data: (pokemon) => GridView.builder(
-              itemCount: pokemon.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
-              itemBuilder: (context, index) => Card(
-                child: Text(pokemon[index].name),
+        data: (pokemon) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                itemCount: pokemon.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemBuilder: (context, index) =>
+                    PokemonTile(pokemon: pokemon[index]),
               ),
             ));
   }
