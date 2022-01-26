@@ -1,10 +1,5 @@
 import 'package:flutter_dex/data/model/types.dart';
-
-extension StringExtension on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
-  }
-}
+import 'package:flutter_dex/utility/string_extension.dart';
 
 class Pokemon {
   int id;

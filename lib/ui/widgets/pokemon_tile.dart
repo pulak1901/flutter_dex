@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
 import 'package:flutter_dex/data/model/type_colors.dart';
+import 'package:flutter_dex/utility/string_extension.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:transparent_image/transparent_image.dart';
 
