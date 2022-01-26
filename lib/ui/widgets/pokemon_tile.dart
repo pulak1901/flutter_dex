@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class PokemonTile extends StatelessWidget {
   final Pokemon pokemon;
@@ -38,25 +40,68 @@ class PokemonTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 8.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-              child: Text(
-                pokemon.name,
-                style: const TextStyle(fontSize: 24),
-              ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SvgPicture.asset(
+                  "assets/pokeball.svg",
+                  color: const Color.fromRGBO(0, 0, 0, 0.05),
+                  width: 60,
+                ),
+                Icon(Icons.arrow_forward_ios)
+              ],
             ),
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _getTiles())
-          ],
-        ),
+          ),
+          Positioned(
+            top: 120,
+            left: 120,
+            child: SvgPicture.asset(
+              "assets/pokeball.svg",
+              color: const Color.fromRGBO(0, 0, 0, 0.05),
+              width: 156,
+              fit: BoxFit.cover,
+              clipBehavior: Clip.hardEdge,
+              allowDrawingOutsideViewBox: true,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+                  child: Text(
+                    pokemon.name,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _getTiles())
+              ],
+            ),
+          ),
+          Positioned(
+            left: 96,
+            top: 90,
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image:
+                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png",
+              width: 128,
+              alignment: Alignment.bottomRight,
+            ),
+          ),
+        ],
       ),
     );
   }
