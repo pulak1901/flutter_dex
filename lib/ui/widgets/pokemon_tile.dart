@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
 import 'package:flutter_dex/data/model/type_colors.dart';
+import 'package:flutter_dex/data/model/types.dart';
 import 'package:flutter_dex/ui/details/extract_details_argument.dart';
 import 'package:flutter_dex/utility/string_extension.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,10 +11,10 @@ class PokemonTile extends StatelessWidget {
   final Pokemon pokemon;
   const PokemonTile({Key? key, required this.pokemon}) : super(key: key);
 
-  List<Widget> _getTiles() {
+  static List<Widget> getTiles(List<PokemonType> types) {
     List<Widget> tiles = [];
 
-    for (final type in pokemon.types) {
+    for (final type in types) {
       tiles.add(Padding(
         padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
         child: Container(
@@ -108,7 +109,7 @@ class PokemonTile extends StatelessWidget {
                   ),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: _getTiles())
+                      children: getTiles(pokemon.types))
                 ],
               ),
             ),
