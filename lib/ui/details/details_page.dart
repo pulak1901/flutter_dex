@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
+import 'package:flutter_dex/data/model/pokemon_info.dart';
 import 'package:flutter_dex/data/model/type_colors.dart';
+import 'package:flutter_dex/di/pokemon_info_provider.dart';
+import 'package:flutter_dex/ui/widgets/pokemon_entry_tile.dart';
+import 'package:flutter_dex/ui/widgets/pokemon_info_tile.dart';
+import 'package:flutter_dex/ui/widgets/pokemon_stats_tile.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_tile.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DetailsPage extends StatefulWidget {
+class DetailsPage extends ConsumerStatefulWidget {
   final Pokemon pokemon;
 
   DetailsPage({Key? key, required this.pokemon}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _DetailsState();
   }
 }
 
-class _DetailsState extends State<DetailsPage> {
+class _DetailsState extends ConsumerState<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     final pokemon = widget.pokemon;
+    final info = ref.watch(pokemonInfoProvider(pokemon.id));
     final _type = pokemon.types.first;
     final _color = TypeColors.getLighterColorOf(_type, 0.1);
-
     return Scaffold(
       body: DefaultTabController(
         length: 1,
@@ -32,7 +38,7 @@ class _DetailsState extends State<DetailsPage> {
               backgroundColor: _color,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(pokemon.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                         letterSpacing: 1.4, fontWeight: FontWeight.w800)),
                 background: Container(
                   decoration: BoxDecoration(
@@ -78,27 +84,48 @@ class _DetailsState extends State<DetailsPage> {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 20,
-                child: Center(
-                  child: Text('Scroll to see the SliverAppBar in effect.'),
-                ),
-              ),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    color: index.isOdd ? Colors.white : Colors.black12,
-                    height: 100.0,
-                    child: Center(
-                      child: Text('$index', textScaleFactor: 5),
-                    ),
-                  );
-                },
-                childCount: 20,
-              ),
+            SliverPadding(
+              padding: const EdgeInsets.all(24),
+              sliver: info.when(
+                  loading: () => const SliverFillRemaining(
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                  error: (err, stack) =>
+                      SliverToBoxAdapter(child: Text("Error! $err")),
+                  data: (info) {
+                    String height = info.height.feet.value!
+                            .truncate()
+                            .toString() +
+                        "′ " +
+                        (info.height.inches.value! % 12).truncate().toString() +
+                        "″";
+                    String weight =
+                        info.weight.kilograms.value!.toStringAsPrecision(2) +
+                            " kg";
+
+                    return SliverList(
+                        delegate: SliverChildListDelegate([
+                      PokemonEntryTile(
+                          species: info.species,
+                          entry: info.entry,
+                          separatorColors: [
+                            TypeColors.getLighterColorOf(_type, 0.3),
+                            TypeColors.colorOf[_type]!,
+                          ]),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      PokemonInfoTile(
+                          height: height,
+                          weight: weight,
+                          genderRate: info.genderRate,
+                          catchRate: info.captureRate),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      PokemonStatsTile(stats: info.baseStats),
+                    ]));
+                  }),
             ),
           ],
         ),
