@@ -16,6 +16,10 @@ class PokemonMoveTile extends StatelessWidget {
     fontSize: 20,
     fontFamily: "IBM Plex Sans",
   );
+  final TextStyle levelStyle = const TextStyle(
+    fontSize: 24,
+    fontFamily: "IBM Plex Mono",
+  );
   final TextStyle valueStyle = const TextStyle(
     fontSize: 18,
     fontFamily: "IBM Plex Mono",
@@ -43,8 +47,8 @@ class PokemonMoveTile extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Text(
-            _getValueAsString(move.level, 2),
-            style: valueStyle,
+            move.level.toString(),
+            style: levelStyle,
             textAlign: TextAlign.center,
           ),
         ],
@@ -82,9 +86,9 @@ class PokemonMoveTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(flex: 2, child: _getLearnMethod()),
+                  Expanded(flex: 3, child: _getLearnMethod()),
                   Expanded(
-                    flex: 3,
+                    flex: 4,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
