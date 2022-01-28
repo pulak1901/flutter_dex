@@ -47,16 +47,24 @@ class PokemonInfoTile extends StatelessWidget {
               ]),
               DataRow(cells: [
                 DataCell(Text("Gender Distribution", style: style)),
-                DataCell(LinearProgressIndicator(
-                  color: Colors.blue[500],
-                  backgroundColor: Colors.pink[200],
-                  value: genderRate / 8,
+                DataCell(ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: LinearProgressIndicator(
+                    color: Colors.blue[500],
+                    backgroundColor: Colors.pink[200],
+                    value: genderRate / 8,
+                    minHeight: 12,
+                  ),
                 )),
               ]),
               DataRow(cells: [
                 DataCell(Text("Catch Rate", style: style)),
-                DataCell(LinearProgressIndicator(
-                  value: catchRate / 255,
+                DataCell(ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: LinearProgressIndicator(
+                    minHeight: 12,
+                    value: catchRate / 255,
+                  ),
                 )),
               ])
             ]),
