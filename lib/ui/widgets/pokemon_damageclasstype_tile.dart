@@ -22,13 +22,17 @@ class PokemonDamageClassTile extends StatelessWidget {
     return Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-        child: Text(
-          damageClass,
-          style: TextStyle(
-              fontSize: 16,
-              color: _text,
-              fontFamily: "IBM Plex Sans",
-              fontWeight: FontWeight.w600),
+        child: SizedBox(
+          width: 64,
+          child: Text(
+            damageClass,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 16,
+                color: _text,
+                fontFamily: "IBM Plex Sans",
+                fontWeight: FontWeight.w600),
+          ),
         ),
       ),
       decoration:
