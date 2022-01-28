@@ -27,7 +27,7 @@ class PokemonMove {
       required this.machine,
       required this.damageClass});
 
-  static List<PokemonMove> fromQuery(Map<String, dynamic> data) {
+  static List<List<PokemonMove>> fromQuery(Map<String, dynamic> data) {
     List<PokemonMove> moves = [];
 
     List<dynamic> ms = data["pokemon_v2_pokemonmove"];
@@ -103,8 +103,14 @@ class PokemonMove {
           machine: _machine));
     }
 
-    moves.sort((m1, m2) => m1.learnMethod.compareTo(m2.learnMethod));
+    final _levelUp = moves.where((e) => e.learnMethod == 'level-up').toList();
+    final _hm = moves
+        .where((e) => e.learnMethod == 'machine' && e.machine.startsWith('HM'))
+        .toList();
+    final _tm = moves
+        .where((e) => e.learnMethod == 'machine' && e.machine.startsWith('TM'))
+        .toList();
 
-    return moves;
+    return [_levelUp, _hm, _tm];
   }
 }

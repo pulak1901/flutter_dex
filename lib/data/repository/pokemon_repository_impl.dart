@@ -65,7 +65,7 @@ query pokemonInfoQuery {
   }
 
   @override
-  Future<List<PokemonMove>> getPokemonMoves(int id) async {
+  Future<List<List<PokemonMove>>> getPokemonMoves(int id) async {
     final result = await client.query('''
 query MyQuery {
   pokemon_v2_pokemonmove(order_by: {level: asc}, where: {pokemon_id: {_eq: $id}, pokemon_v2_versiongroup: {id: {_eq: 1}}}) {

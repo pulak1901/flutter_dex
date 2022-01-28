@@ -4,5 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'pokemon_repository_provider.dart';
 
-final PokemonMovesProvider = FutureProvider.family<List<PokemonMove>, int>(
-    (ref, id) => ref.read(pokemonRepositoryProvider).getPokemonMoves(id));
+final PokemonMovesProvider =
+    FutureProvider.family<List<List<PokemonMove>>, int>(
+        (ref, id) => ref.read(pokemonRepositoryProvider).getPokemonMoves(id));
