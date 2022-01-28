@@ -3,7 +3,7 @@ import 'package:flutter_dex/data/model/pokemon.dart';
 import 'package:flutter_dex/data/model/type_colors.dart';
 import 'package:flutter_dex/data/model/types.dart';
 import 'package:flutter_dex/ui/details/extract_details_argument.dart';
-import 'package:flutter_dex/utility/string_extension.dart';
+import 'package:flutter_dex/ui/widgets/pokemon_type_tile.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -16,19 +16,8 @@ class PokemonTile extends StatelessWidget {
 
     for (final type in types) {
       tiles.add(Padding(
-        padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-            child: Text(
-              type.name.capitalize(),
-              style: const TextStyle(fontSize: 16, color: Colors.white),
-            ),
-          ),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32),
-              color: TypeColors.colorOf[type]),
-        ),
+        padding: const EdgeInsets.only(top: 12),
+        child: PokemonTypeTile(type: type),
       ));
     }
 
