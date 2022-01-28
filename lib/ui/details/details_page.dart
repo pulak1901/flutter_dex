@@ -84,7 +84,7 @@ class _DetailsState extends ConsumerState<DetailsPage> {
       }
 
       return SliverPadding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(16),
           sliver: moves.when(
               loading: () => const SliverFillRemaining(
                     child: Padding(
@@ -97,8 +97,6 @@ class _DetailsState extends ConsumerState<DetailsPage> {
               data: (info) {
                 if (info[i].isEmpty) {
                   return SliverToBoxAdapter(
-                      child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Card(
                       elevation: 8.0,
                       shape: RoundedRectangleBorder(
@@ -112,7 +110,7 @@ class _DetailsState extends ConsumerState<DetailsPage> {
                         ),
                       ),
                     ),
-                  ));
+                  );
                 } else {
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(
