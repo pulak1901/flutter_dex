@@ -145,15 +145,26 @@ class _DetailsState extends ConsumerState<DetailsPage> {
                 handle:
                     NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 sliver: SliverAppBar(
-                  title: Text(pokemon.name,
-                      style: const TextStyle(
-                          fontSize: 38,
-                          color: Colors.white,
-                          letterSpacing: 1.4,
-                          fontWeight: FontWeight.w800)),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(pokemon.name,
+                          style: const TextStyle(
+                              fontSize: 38,
+                              color: Colors.white70,
+                              letterSpacing: 1.4,
+                              fontWeight: FontWeight.w800)),
+                      Text("#" + pokemon.id.toString().padLeft(3, '0'),
+                          style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 38,
+                              letterSpacing: 2.0,
+                              fontWeight: FontWeight.w900))
+                    ],
+                  ),
                   backgroundColor: _color,
                   pinned: true,
-                  expandedHeight: 200.0,
+                  expandedHeight: 250.0,
                   forceElevated: innerBoxIsScrolled,
                   flexibleSpace: FlexibleSpaceBar(
                       background: _FlexibleSpaceBarBg(
@@ -236,14 +247,14 @@ class _FlexibleSpaceBarBg extends StatelessWidget {
         gradient: RadialGradient(colors: [
           TypeColors.getLighterColorOf(_type, 0.3),
           TypeColors.colorOf[_type]!,
-        ], radius: 1, center: const Alignment(0.3, 0)),
+        ], radius: 1, center: const Alignment(0.1, 0)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 72, left: 58),
+            padding: const EdgeInsets.only(top: 90, left: 58),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [..._tiles],
@@ -253,7 +264,7 @@ class _FlexibleSpaceBarBg extends StatelessWidget {
             children: [
               Positioned(
                 left: 60,
-                top: 40,
+                top: 80,
                 child: SvgPicture.asset(
                   "assets/pokeball.svg",
                   color: Colors.white24,
@@ -264,7 +275,7 @@ class _FlexibleSpaceBarBg extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, right: 16, bottom: 24),
+                padding: const EdgeInsets.only(top: 60, right: 16, bottom: 24),
                 child: Image.network(
                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png"),
               ),
