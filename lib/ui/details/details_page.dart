@@ -264,12 +264,11 @@ class _FlexibleSpaceBarBg extends StatelessWidget {
           Stack(
             children: [
               Positioned(
-                left: 60,
-                top: 80,
+                top: 32,
                 child: SvgPicture.asset(
                   "assets/pokeball.svg",
                   color: Colors.white24,
-                  width: 156,
+                  width: 256,
                   fit: BoxFit.cover,
                   clipBehavior: Clip.hardEdge,
                   allowDrawingOutsideViewBox: true,
