@@ -79,7 +79,7 @@ class PokemonMove {
       List<dynamic> m5 = m2["pokemon_v2_moveflavortexts"];
       Map<String, dynamic> m51 = m5[0];
       String _flavorText = m51["flavor_text"];
-      _flavorText = _flavorText.replaceAll('\f', '').replaceAll('­', '');
+      _flavorText = _flavorText.replaceAll('\f', '').replaceAll('­', '-');
       final _ft = _flavorText.split('\n');
       _flavorTextL1 = _ft.first;
       if (_ft.length > 1) {
