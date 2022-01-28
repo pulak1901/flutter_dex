@@ -152,12 +152,15 @@ class _DetailsState extends ConsumerState<DetailsPage> {
                               color: Colors.white70,
                               letterSpacing: 1.4,
                               fontWeight: FontWeight.w800)),
-                      Text("#" + pokemon.id.toString().padLeft(3, '0'),
-                          style: const TextStyle(
-                              color: Colors.white70,
-                              fontSize: 38,
-                              letterSpacing: 2.0,
-                              fontWeight: FontWeight.w900))
+                      Padding(
+                        padding: const EdgeInsets.only(right: 4.0),
+                        child: Text("#" + pokemon.id.toString().padLeft(3, '0'),
+                            style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 38,
+                                letterSpacing: 2.0,
+                                fontWeight: FontWeight.w900)),
+                      ),
                     ],
                   ),
                   backgroundColor: _color,
