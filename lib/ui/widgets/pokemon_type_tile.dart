@@ -15,7 +15,11 @@ class PokemonTypeTile extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
         child: Text(
           type.name.capitalize(),
-          style: const TextStyle(fontSize: 16, color: Colors.white),
+          style: const TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontFamily: "IBM Plex Sans",
+              fontWeight: FontWeight.w600),
         ),
       ),
       decoration: BoxDecoration(

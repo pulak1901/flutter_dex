@@ -112,3 +112,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: IBM Plex Mono
+      fonts:
+        - asset: fonts/IBMPlexMono-Regular.ttf
+        - asset: fonts/IBMPlexMono-SemiBold.ttf
+        - asset: fonts/IBMPlexMono-Bold.ttf
+    - family: IBM Plex Sans
+      fonts:
+        - asset: fonts/IBMPlexSans-Regular.ttf
+        - asset: fonts/IBMPlexSans-SemiBold.ttf
+        - asset: fonts/IBMPlexSans-Bold.ttf

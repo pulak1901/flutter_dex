@@ -54,6 +54,7 @@ class PokemonTile extends StatelessWidget {
                 "#" + pokemon.id.toString().padLeft(3, '0'),
                 style: const TextStyle(
                     color: Colors.black26,
+                    fontFamily: "IBM Plex Sans",
                     fontSize: 40,
                     letterSpacing: 2.0,
                     fontWeight: FontWeight.w900),
@@ -86,10 +87,11 @@ class PokemonTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 32, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 30, 0, 0),
                     child: Text(
                       pokemon.name,
                       style: const TextStyle(
+                          fontFamily: "IBM Plex Sans",
                           fontSize: 24,
                           color: Colors.white,
                           letterSpacing: 1.4,

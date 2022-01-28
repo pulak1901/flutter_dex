@@ -13,7 +13,14 @@ class PokemonInfoTile extends StatelessWidget {
       required this.catchRate})
       : super(key: key);
 
-  final TextStyle style = const TextStyle(fontSize: 16);
+  final TextStyle style = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Sans",
+  );
+  final TextStyle valueStyle = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Mono",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +39,11 @@ class PokemonInfoTile extends StatelessWidget {
             ], rows: [
               DataRow(cells: [
                 DataCell(Text("Height", style: style)),
-                DataCell(Text(height, style: style)),
+                DataCell(Text(height, style: valueStyle)),
               ]),
               DataRow(cells: [
                 DataCell(Text("Weight", style: style)),
-                DataCell(Text(weight, style: style)),
+                DataCell(Text(weight, style: valueStyle)),
               ]),
               DataRow(cells: [
                 DataCell(Text("Gender Distribution", style: style)),

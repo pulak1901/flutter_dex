@@ -4,10 +4,22 @@ import 'package:flutter_dex/ui/widgets/pokemon_damageclasstype_tile.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_type_tile.dart';
 
 class PokemonMoveTile extends StatelessWidget {
-  final TextStyle style = const TextStyle(fontSize: 16);
-  final TextStyle colStyle = const TextStyle(fontSize: 18);
-  final TextStyle nameStyle = const TextStyle(fontSize: 20);
-  final TextStyle valueStyle = const TextStyle(fontSize: 18);
+  final TextStyle flavorStyle = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Mono",
+  );
+  final TextStyle colStyle = const TextStyle(
+    fontSize: 18,
+    fontFamily: "IBM Plex Sans",
+  );
+  final TextStyle nameStyle = const TextStyle(
+    fontSize: 20,
+    fontFamily: "IBM Plex Sans",
+  );
+  final TextStyle valueStyle = const TextStyle(
+    fontSize: 18,
+    fontFamily: "IBM Plex Mono",
+  );
 
   final PokemonMove move;
 
@@ -81,9 +93,9 @@ class PokemonMoveTile extends StatelessWidget {
                           style: nameStyle,
                         ),
                         const SizedBox(height: 4),
-                        Text(move.flavorTextLine1, style: style),
+                        Text(move.flavorTextLine1, style: flavorStyle),
                         if (move.flavorTextLine2 != '')
-                          Text(move.flavorTextLine2, style: style),
+                          Text(move.flavorTextLine2, style: flavorStyle),
                         const SizedBox(height: 4),
                       ],
                     ),

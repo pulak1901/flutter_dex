@@ -4,8 +4,18 @@ class PokemonStatsTile extends StatelessWidget {
   final Map<String, int> stats;
   const PokemonStatsTile({Key? key, required this.stats}) : super(key: key);
 
-  final TextStyle style = const TextStyle(fontSize: 24);
-  final TextStyle entryStyle = const TextStyle(fontSize: 16);
+  final TextStyle style = const TextStyle(
+    fontSize: 24,
+    fontFamily: "IBM Plex Sans",
+  );
+  final TextStyle entryStyle = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Sans",
+  );
+  final TextStyle valueStyle = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Mono",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +34,7 @@ class PokemonStatsTile extends StatelessWidget {
             rows: stats.entries
                 .map((e) => DataRow(cells: [
                       DataCell(Text(e.key.toString(), style: entryStyle)),
-                      DataCell(Text(e.value.toString(), style: entryStyle)),
+                      DataCell(Text(e.value.toString(), style: valueStyle)),
                     ]))
                 .toList(),
           ),

@@ -11,8 +11,14 @@ class PokemonEntryTile extends StatelessWidget {
       required this.separatorColors})
       : super(key: key);
 
-  final TextStyle style = const TextStyle(fontSize: 20);
-  final TextStyle entryStyle = const TextStyle(fontSize: 16);
+  final TextStyle style = const TextStyle(
+    fontSize: 20,
+    fontFamily: "IBM Plex Sans",
+  );
+  final TextStyle entryStyle = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Mono",
+  );
 
   @override
   Widget build(BuildContext context) {

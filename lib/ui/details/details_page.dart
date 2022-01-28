@@ -26,7 +26,10 @@ class DetailsPage extends ConsumerStatefulWidget {
 
 class _DetailsState extends ConsumerState<DetailsPage> {
   final List<String> _tabs = <String>['Info', 'Learnset', 'HMs', 'TMs'];
-  final TextStyle style = const TextStyle(fontSize: 16);
+  final TextStyle style = const TextStyle(
+    fontSize: 16,
+    fontFamily: "IBM Plex Sans",
+  );
 
   Widget _getTabContents(String name, AsyncValue<PokemonInfo> info,
       AsyncValue<List<List<PokemonMove>>> moves) {
@@ -149,14 +152,16 @@ class _DetailsState extends ConsumerState<DetailsPage> {
                       Text(pokemon.name,
                           style: const TextStyle(
                               fontSize: 38,
+                              fontFamily: "IBM Plex Sans",
                               color: Colors.white70,
-                              letterSpacing: 1.4,
+                              letterSpacing: 1.1,
                               fontWeight: FontWeight.w800)),
                       Padding(
                         padding: const EdgeInsets.only(right: 4.0),
                         child: Text("#" + pokemon.id.toString().padLeft(3, '0'),
                             style: const TextStyle(
                                 color: Colors.white70,
+                                fontFamily: "IBM Plex Sans",
                                 fontSize: 38,
                                 letterSpacing: 2.0,
                                 fontWeight: FontWeight.w900)),
