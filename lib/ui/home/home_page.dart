@@ -22,21 +22,23 @@ class PokemonList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<Pokemon>> pm = ref.watch(pokemonProvider);
 
-    return pm.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Text("Error! $err"),
-        data: (pokemon) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                itemCount: pokemon.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
+    return Scaffold(
+      body: pm.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (err, stack) => Text("Error! $err"),
+          data: (pokemon) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  itemCount: pokemon.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
+                  itemBuilder: (context, index) =>
+                      PokemonTile(pokemon: pokemon[index]),
                 ),
-                itemBuilder: (context, index) =>
-                    PokemonTile(pokemon: pokemon[index]),
-              ),
-            ));
+              )),
+    );
   }
 }
