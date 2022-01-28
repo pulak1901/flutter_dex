@@ -4,7 +4,7 @@ class PokemonEntryTile extends StatelessWidget {
   final String species;
   final String entry;
   final List<Color> separatorColors;
-  PokemonEntryTile(
+  const PokemonEntryTile(
       {Key? key,
       required this.species,
       required this.entry,
@@ -36,7 +36,7 @@ class PokemonEntryTile extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          stops: [0.0, 0.15],
+                          stops: const [0.0, 0.15],
                           colors: separatorColors,
                         ),
                       ),

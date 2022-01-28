@@ -1,12 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class HttpClientLogger extends BaseClient {
   final Client _client;
-  final JsonEncoder _encoder = const JsonEncoder.withIndent('  ');
-  final JsonDecoder _decoder = const JsonDecoder();
 
   HttpClientLogger(this._client);
 

@@ -16,7 +16,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class DetailsPage extends ConsumerStatefulWidget {
   final Pokemon pokemon;
 
-  DetailsPage({Key? key, required this.pokemon}) : super(key: key);
+  const DetailsPage({Key? key, required this.pokemon}) : super(key: key);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
@@ -131,7 +131,7 @@ class _DetailsState extends ConsumerState<DetailsPage> {
     final _type = pokemon.types.first;
     final _color = TypeColors.getLighterColorOf(_type, 0.1);
 
-    final moves = ref.watch(PokemonMovesProvider(pokemon.id));
+    final moves = ref.watch(pokemonMovesProvider(pokemon.id));
 
     return DefaultTabController(
       length: _tabs.length,

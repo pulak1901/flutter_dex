@@ -5,7 +5,7 @@ class PokemonInfoTile extends StatelessWidget {
   final String weight;
   final int genderRate;
   final int catchRate;
-  PokemonInfoTile(
+  const PokemonInfoTile(
       {Key? key,
       required this.height,
       required this.weight,
