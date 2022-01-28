@@ -21,6 +21,41 @@ class PokemonMoveTile extends StatelessWidget {
     }
   }
 
+  Widget _getLearnMethod() {
+    if (move.learnMethod == 'level-up') {
+      return Column(
+        children: [
+          Text(
+            "Level",
+            style: valueStyle,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            _getValueAsString(move.level, 2),
+            style: valueStyle,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+    } else {
+      String machineType = move.machine.substring(0, 2).toLowerCase();
+      String type = move.type.name;
+      return Column(
+        children: [
+          Image.asset(
+            "assets/$machineType/$type.webp",
+            scale: 0.8,
+          ),
+          Text(
+            move.machine,
+            style: valueStyle,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,23 +70,7 @@ class PokemonMoveTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      children: [
-                        Text(
-                          "Level",
-                          style: valueStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          _getValueAsString(move.level, 2),
-                          style: valueStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
+                  Expanded(flex: 2, child: _getLearnMethod()),
                   Expanded(
                     flex: 3,
                     child: Column(

@@ -8,7 +8,6 @@ import 'package:flutter_dex/di/pokemon_moves_provider.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_entry_tile.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_info_tile.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_move_tile.dart';
-import 'package:flutter_dex/ui/widgets/pokemon_moves_tile.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_stats_tile.dart';
 import 'package:flutter_dex/ui/widgets/pokemon_tile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +26,7 @@ class DetailsPage extends ConsumerStatefulWidget {
 
 class _DetailsState extends ConsumerState<DetailsPage> {
   final List<String> _tabs = <String>['Info', 'Learnset', 'HMs', 'TMs'];
+  final TextStyle style = const TextStyle(fontSize: 16);
 
   Widget _getTabContents(String name, AsyncValue<PokemonInfo> info,
       AsyncValue<List<List<PokemonMove>>> moves) {
@@ -72,28 +72,56 @@ class _DetailsState extends ConsumerState<DetailsPage> {
               ]));
             }),
       );
-    } else if (name == _tabs[1]) {
-      return SliverPadding(
-        padding: const EdgeInsets.all(24),
-        sliver: moves.when(
-            loading: () => const SliverFillRemaining(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                ),
-            error: (err, stack) =>
-                SliverToBoxAdapter(child: Text("Error! $err")),
-            data: (info) => SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                      (context, index) => PokemonMoveTile(move: info[0][index]),
-                      childCount: info[0].length),
-                )),
-      );
     } else {
-      return SliverFillRemaining(
-        child: Container(),
-      );
+      int i = 0;
+      String msg = "This Pokémon cannot learn any moves by levelling up.";
+      if (name == 'HMs') {
+        i = 1;
+        msg = "This Pokémon cannot learn any moves from HMs.";
+      } else if (name == 'TMs') {
+        i = 2;
+        msg = "This Pokémon cannot learn any moves from TMs.";
+      }
+
+      return SliverPadding(
+          padding: const EdgeInsets.all(24),
+          sliver: moves.when(
+              loading: () => const SliverFillRemaining(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
+                  ),
+              error: (err, stack) =>
+                  SliverToBoxAdapter(child: Text("Error! $err")),
+              data: (info) {
+                if (info[i].isEmpty) {
+                  return SliverToBoxAdapter(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Card(
+                      elevation: 8.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Text(
+                          msg,
+                          style: style,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ));
+                } else {
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                        (context, index) =>
+                            PokemonMoveTile(move: info[i][index]),
+                        childCount: info[i].length),
+                  );
+                }
+              }));
     }
   }
 

@@ -107,9 +107,11 @@ class PokemonMove {
     final _hm = moves
         .where((e) => e.learnMethod == 'machine' && e.machine.startsWith('HM'))
         .toList();
+    _hm.sort((m1, m2) => m1.machine.compareTo(m2.machine));
     final _tm = moves
         .where((e) => e.learnMethod == 'machine' && e.machine.startsWith('TM'))
         .toList();
+    _tm.sort((m1, m2) => m1.machine.compareTo(m2.machine));
 
     return [_levelUp, _hm, _tm];
   }

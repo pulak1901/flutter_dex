@@ -71,6 +71,21 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
    - assets/pokeball.svg
+   - assets/hm/flying.webp
+   - assets/hm/normal.webp
+   - assets/hm/water.webp
+   - assets/tm/dragon.webp
+   - assets/tm/electric.webp
+   - assets/tm/fighting.webp
+   - assets/tm/fire.webp
+   - assets/tm/flying.webp
+   - assets/tm/grass.webp
+   - assets/tm/ground.webp
+   - assets/tm/ice.webp
+   - assets/tm/normal.webp
+   - assets/tm/poison.webp
+   - assets/tm/psychic.webp
+   - assets/tm/water.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
