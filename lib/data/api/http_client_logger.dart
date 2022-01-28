@@ -19,14 +19,14 @@ class HttpClientLogger extends BaseClient {
   Future<StreamedResponse> send(BaseRequest request) {
     return _client.send(request).then((StreamedResponse response) async {
       final String responseString = await response.stream.bytesToString();
-
+/*
       debugPrint('''
 => request: ${response.request.toString()},
 => headers: ${_encoder.convert(response.headers)},
 <- statusCode: ${response.statusCode},
 <- responseString: ${_encoder.convert(_decoder.convert(responseString))},
       ''');
-
+*/
       return StreamedResponse(
         ByteStream.fromBytes(utf8.encode(responseString)),
         response.statusCode,
