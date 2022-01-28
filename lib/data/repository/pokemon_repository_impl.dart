@@ -68,7 +68,7 @@ query pokemonInfoQuery {
   Future<List<List<PokemonMove>>> getPokemonMoves(int id) async {
     final result = await client.query('''
 query MyQuery {
-  pokemon_v2_pokemonmove(order_by: {level: asc}, where: {pokemon_id: {_eq: $id}, pokemon_v2_versiongroup: {id: {_eq: 1}}}) {
+  pokemon_v2_pokemonmove(order_by: {level: asc}, where: {pokemon_id: {_eq: $id}, pokemon_v2_versiongroup: {id: {_eq: 1}}, pokemon_v2_move: {pokemon_v2_type: {generation_id: {_eq: 1}}}}) {
     level
     pokemon_v2_move {
       name
@@ -96,7 +96,6 @@ query MyQuery {
     }
   }
 }
-
 ''', variables: {});
 
     return PokemonMove.fromQuery(result.data!);
