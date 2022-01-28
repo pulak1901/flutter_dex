@@ -1,6 +1,7 @@
 import 'package:flutter_dex/data/api/poke_api_client.dart';
 import 'package:flutter_dex/data/model/pokemon.dart';
 import 'package:flutter_dex/data/model/pokemon_info.dart';
+import 'package:flutter_dex/data/model/pokemon_moves.dart';
 import 'package:flutter_dex/data/repository/pokemon_repository.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {
@@ -61,5 +62,43 @@ query pokemonInfoQuery {
 ''', variables: {});
 
     return PokemonInfo.fromQuery(result.data!);
+  }
+
+  @override
+  Future<List<PokemonMove>> getPokemonMoves(int id) async {
+    final result = await client.query('''
+query MyQuery {
+  pokemon_v2_pokemonmove(order_by: {level: asc}, where: {pokemon_id: {_eq: $id}, pokemon_v2_versiongroup: {id: {_eq: 1}}}) {
+    level
+    pokemon_v2_move {
+      name
+      id
+      power
+      pp
+      type_id
+      accuracy
+      pokemon_v2_machines(where: {pokemon_v2_versiongroup: {id: {_eq: 1}}}) {
+        pokemon_v2_item {
+          name
+        }
+      }
+      pokemon_v2_movedamageclass {
+        pokemon_v2_movedamageclassnames(where: {language_id: {_eq: 9}}) {
+          name
+        }
+      }
+      pokemon_v2_moveflavortexts(where: {version_group_id: {_eq: 3}}) {
+        flavor_text
+      }
+    }
+    pokemon_v2_movelearnmethod {
+      name
+    }
+  }
+}
+
+''', variables: {});
+
+    return PokemonMove.fromQuery(result.data!);
   }
 }
